@@ -1,15 +1,22 @@
 # Homebrew formula for capslock-indicator.
 #
-# After tagging a release (e.g. v0.1.0), fill in `sha256` with:
-#   curl -sL https://github.com/spacegauch0/capslock-indicator/archive/refs/tags/v0.1.0.tar.gz | shasum -a 256
+# Builds from a pinned git revision rather than GitHub's auto-generated source
+# tarball: those tarballs are not byte-stable (their sha256 drifts across CDN
+# nodes), which would make `brew install` fail intermittently. A git tag +
+# revision is immutable and needs no sha256.
 #
-# Publish this file in a tap repo named `homebrew-tap`, then users run:
+# To cut a new version: push a tag, then update `tag` and `revision` below.
+#   git rev-parse vX.Y.Z^{commit}
+#
+# Publish this file in a tap repo named `homebrew-tap`; users then run:
 #   brew install spacegauch0/tap/capslock-indicator
 class CapslockIndicator < Formula
   desc "Claude Code agent status indicator using keyboard LEDs"
   homepage "https://github.com/spacegauch0/capslock-indicator"
-  url "https://github.com/spacegauch0/capslock-indicator/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "REPLACE_WITH_TARBALL_SHA256"
+  url "https://github.com/spacegauch0/capslock-indicator.git",
+      tag:      "v0.1.0",
+      revision: "c96d489341b9abf010c423b65fb82f4335ce3fde"
+  version "0.1.0"
   license "MIT"
   head "https://github.com/spacegauch0/capslock-indicator.git", branch: "main"
 
@@ -21,7 +28,6 @@ class CapslockIndicator < Formula
 
   test do
     assert_match "capslock-indicator", shell_output("#{bin}/capslock-indicator --help")
-    # `status` exits cleanly and prints on/off/unknown on a headless runner.
     assert_predicate bin/"capslock-indicator", :exist?
   end
 end
