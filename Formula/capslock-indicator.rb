@@ -15,7 +15,7 @@ class CapslockIndicator < Formula
   homepage "https://github.com/spacegauch0/capslock-indicator"
   url "https://github.com/spacegauch0/capslock-indicator.git",
       tag:      "v0.1.0",
-      revision: "c96d489341b9abf010c423b65fb82f4335ce3fde"
+      revision: "3a9db387e566a552bc5c9313f2043533c518566c"
   version "0.1.0"
   license "MIT"
   head "https://github.com/spacegauch0/capslock-indicator.git", branch: "main"
