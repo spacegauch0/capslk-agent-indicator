@@ -15,7 +15,7 @@ class CapslockIndicator < Formula
   homepage "https://github.com/spacegauch0/capslk-agent-indicator"
   url "https://github.com/spacegauch0/capslk-agent-indicator.git",
       tag:      "v0.2.0",
-      revision: "3a9db387e566a552bc5c9313f2043533c518566c"
+      revision: "7c2a1761f28861a1e11beb85aa7b6eae86295cf0"
   version "0.2.0"
   license "MIT"
   head "https://github.com/spacegauch0/capslk-agent-indicator.git", branch: "main"
