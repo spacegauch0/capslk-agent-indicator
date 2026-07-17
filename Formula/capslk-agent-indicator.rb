@@ -14,9 +14,9 @@ class CapslkAgentIndicator < Formula
   desc "Claude Code agent status indicator using keyboard LEDs"
   homepage "https://github.com/spacegauch0/capslk-agent-indicator"
   url "https://github.com/spacegauch0/capslk-agent-indicator.git",
-      tag:      "v0.2.0",
+      tag:      "v0.3.0",
       revision: "7c2a1761f28861a1e11beb85aa7b6eae86295cf0"
-  version "0.2.0"
+  version "0.3.0"
   license "MIT"
   head "https://github.com/spacegauch0/capslk-agent-indicator.git", branch: "main"
 
@@ -26,8 +26,21 @@ class CapslkAgentIndicator < Formula
     system "cargo", "install", *std_cargo_args
   end
 
+  # Homebrew has no uninstall hook, so it can't remove the Claude Code hooks on
+  # `brew uninstall`. Remind the user to do it themselves. (Leftover hooks are
+  # harmless anyway — they self-guard and no-op once the binary is gone.)
+  def caveats
+    <<~EOS
+      To use as a Claude Code status light, wire up the hooks:
+        capslk-agent-indicator install-hooks
+
+      Before `brew uninstall`, remove them with:
+        capslk-agent-indicator uninstall-hooks
+    EOS
+  end
+
   test do
-    assert_match "capslock-indicator", shell_output("#{bin}/capslock-indicator --help")
-    assert_predicate bin/"capslock-indicator", :exist?
+    assert_match "capslk-agent-indicator", shell_output("#{bin}/capslk-agent-indicator --help")
+    assert_predicate bin/"capslk-agent-indicator", :exist?
   end
 end

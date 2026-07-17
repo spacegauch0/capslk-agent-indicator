@@ -1,4 +1,4 @@
-# capslock-indicator
+# capslk-agent-indicator
 
 Turn your keyboard's **Caps Lock LED** into a status light for the Claude Code
 agent:
@@ -32,14 +32,14 @@ brew install spacegauch0/tap/capslk-agent-indicator
 ```sh
 cargo build --release
 # optionally put it on your PATH:
-cp target/release/capslock-indicator ~/.local/bin/
+cp target/release/capslk-agent-indicator ~/.local/bin/
 ```
 
 ### Wire it into Claude Code
 
 ```sh
-capslock-indicator install-hooks              # caps lock LED
-capslock-indicator --backlight install-hooks  # or: keyboard backlight (macOS)
+capslk-agent-indicator install-hooks              # caps lock LED
+capslk-agent-indicator --backlight install-hooks  # or: keyboard backlight (macOS)
 ```
 
 Build on each platform you use (or cross-compile with the matching Rust
@@ -54,16 +54,16 @@ target). `install-hooks` wires the indicator into Claude Code's hook system
 Restart your Claude Code session to pick up the hooks. Existing hooks in
 settings.json are preserved; re-running `install-hooks` is idempotent (it
 replaces its own entries, e.g. after moving the binary). Remove them any time
-with `capslock-indicator uninstall-hooks`.
+with `capslk-agent-indicator uninstall-hooks`.
 
 ## Manual usage
 
 ```sh
-capslock-indicator on          # solid LED
-capslock-indicator blink       # flash (default 0.4s); `blink 0.2` for faster
-capslock-indicator off         # LED off (also stops blinking)
-capslock-indicator toggle
-capslock-indicator status      # print on/off
+capslk-agent-indicator on          # solid LED
+capslk-agent-indicator blink       # flash (default 0.4s); `blink 0.2` for faster
+capslk-agent-indicator off         # LED off (also stops blinking)
+capslk-agent-indicator toggle
+capslk-agent-indicator status      # print on/off
 ```
 
 `blink` spawns a small detached daemon; any subsequent `on`/`off` kills it and

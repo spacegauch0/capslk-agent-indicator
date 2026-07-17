@@ -3,8 +3,8 @@
 version = 4
 
 [[package]]
-name = "capslock-indicator"
-version = "0.2.0"
+name = "capslk-agent-indicator"
+version = "0.3.0"
 dependencies = [
  "serde_json",
 ]

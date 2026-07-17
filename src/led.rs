@@ -101,7 +101,7 @@ mod backlight {
 
     fn saved_brightness_file() -> PathBuf {
         let user = std::env::var("USER").unwrap_or_else(|_| "unknown".into());
-        std::env::temp_dir().join(format!("capslock-indicator-backlight-{user}.sav"))
+        std::env::temp_dir().join(format!("capslk-agent-indicator-backlight-{user}.sav"))
     }
 
     pub fn new() -> Result<Backend, String> {

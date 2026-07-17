@@ -47,12 +47,27 @@ fn is_ours(entry: &Value) -> bool {
         .as_array()
         .map(|hs| {
             hs.iter().any(|h| {
-                h["command"]
-                    .as_str()
-                    .is_some_and(|c| c.contains("capslock"))
+                h["command"].as_str().is_some_and(|c| {
+                    // Current name and the legacy one, so uninstall-hooks
+                    // cleans up entries written by an older version too.
+                    c.contains("capslk-agent-indicator") || c.contains("capslock-indicator")
+                })
             })
         })
         .unwrap_or(false)
+}
+
+/// Build a hook command string. On Unix it is guarded so that if the binary is
+/// gone (e.g. after `brew uninstall` without running `uninstall-hooks`), the
+/// hook silently no-ops instead of erroring and disrupting Claude Code.
+#[cfg(not(windows))]
+fn hook_command(exe: &str, targ: &str, action: &str) -> String {
+    format!("[ -x \"{exe}\" ] && \"{exe}\"{targ} {action} || true")
+}
+
+#[cfg(windows)]
+fn hook_command(exe: &str, targ: &str, action: &str) -> String {
+    format!("\"{exe}\"{targ} {action}")
 }
 
 /// Remove our entries from every event; drop events left empty.
@@ -78,10 +93,12 @@ pub fn install(path_arg: Option<&str>, target: crate::led::Target) -> Result<Pat
     let path = settings_path(path_arg)?;
     let mut settings = load(&path)?;
     let exe = std::env::current_exe().map_err(|e| e.to_string())?;
-    let mut cmd_base = exe.to_string_lossy().to_string();
-    if target != crate::led::Target::CapsLock {
-        cmd_base.push_str(&format!(" --target {}", target.as_str()));
-    }
+    let exe = exe.to_string_lossy().to_string();
+    let targ = if target != crate::led::Target::CapsLock {
+        format!(" --target {}", target.as_str())
+    } else {
+        String::new()
+    };
 
     let hooks = settings
         .entry("hooks")
@@ -91,7 +108,7 @@ pub fn install(path_arg: Option<&str>, target: crate::led::Target) -> Result<Pat
     strip_ours(hooks);
     for (event, action) in EVENTS {
         let entry = json!({
-            "hooks": [{"type": "command", "command": format!("{cmd_base} {action}")}]
+            "hooks": [{"type": "command", "command": hook_command(&exe, &targ, action)}]
         });
         hooks
             .entry(*event)

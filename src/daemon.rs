@@ -12,7 +12,7 @@ fn pidfile() -> PathBuf {
     let user = std::env::var("USER")
         .or_else(|_| std::env::var("USERNAME"))
         .unwrap_or_else(|_| "unknown".into());
-    std::env::temp_dir().join(format!("capslock-indicator-{user}.pid"))
+    std::env::temp_dir().join(format!("capslk-agent-indicator-{user}.pid"))
 }
 
 /// Kill a running blink daemon, if any. Returns true if one was stopped.

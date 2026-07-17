@@ -1,4 +1,4 @@
-//! capslock-indicator: drive a keyboard light as a Claude Code status light.
+//! capslk-agent-indicator: drive a keyboard light as a Claude Code status light.
 //!
 //!   on     - agent is working (solid light)
 //!   blink  - agent needs your attention (flashing light)
@@ -11,9 +11,9 @@ mod led;
 use led::Target;
 
 const USAGE: &str = "\
-capslock-indicator - Claude Code agent status via a keyboard light
+capslk-agent-indicator - Claude Code agent status via a keyboard light
 
-usage: capslock-indicator [--target capslock|backlight] <command>
+usage: capslk-agent-indicator [--target capslock|backlight] <command>
 
 commands:
   on                  solid light (agent working)
