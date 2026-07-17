@@ -12,13 +12,13 @@
 #   brew install spacegauch0/tap/capslock-indicator
 class CapslockIndicator < Formula
   desc "Claude Code agent status indicator using keyboard LEDs"
-  homepage "https://github.com/spacegauch0/capslock-indicator"
-  url "https://github.com/spacegauch0/capslock-indicator.git",
-      tag:      "v0.1.0",
+  homepage "https://github.com/spacegauch0/capslk-agent-indicator"
+  url "https://github.com/spacegauch0/capslk-agent-indicator.git",
+      tag:      "v0.2.0",
       revision: "3a9db387e566a552bc5c9313f2043533c518566c"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
-  head "https://github.com/spacegauch0/capslock-indicator.git", branch: "main"
+  head "https://github.com/spacegauch0/capslk-agent-indicator.git", branch: "main"
 
   depends_on "rust" => :build
 

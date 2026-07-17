@@ -69,6 +69,13 @@ capslock-indicator status      # print on/off
 `blink` spawns a small detached daemon; any subsequent `on`/`off` kills it and
 restores a steady state.
 
+**Blinking stops as soon as you touch the keyboard or mouse** — pressing any
+key acknowledges the alert and turns the light off. This is detected via the
+system's HID idle timer (no accessibility permissions needed), so it works even
+though the daemon has no window focus. On macOS and Windows this is automatic;
+on Linux there's no permission-free system-wide idle source, so blinking there
+stops on the next `on`/`off` instead (e.g. Claude Code's next prompt submit).
+
 All commands accept `--target capslock|backlight` (or the `--backlight`
 shorthand) to pick which light to drive; caps lock is the default.
 
