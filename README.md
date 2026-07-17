@@ -131,36 +131,6 @@ You *can* cross-compile locally (`rustup target add …` then
 toolchains — Mac→Mac universal works locally; Mac→Linux/Windows needs a cross
 linker (`cross`, mingw, etc.), which is why CI is the recommended path.
 
-## Releasing & Homebrew
-
-The Homebrew tap lives at
-[spacegauch0/homebrew-tap](https://github.com/spacegauch0/homebrew-tap) and is
-already published, so `brew install spacegauch0/tap/capslock-indicator` works.
-
-The formula **builds from a pinned git tag + commit revision**, not from
-GitHub's auto-generated source tarball. Those tarballs are not byte-stable —
-their sha256 drifts between CDN nodes for identical content — so a pinned
-`sha256` would make `brew install` fail intermittently. A git tag + revision is
-immutable and needs no checksum.
-
-**Cut a new version:**
-
-```sh
-git tag vX.Y.Z && git push origin vX.Y.Z        # also triggers the binary release workflow
-git rev-parse vX.Y.Z^{commit}                    # full revision for the formula
-```
-
-Then in the tap's `Formula/capslock-indicator.rb`, bump `tag`, `revision`, and
-`version`, and push the tap. That's it — users get it via `brew upgrade`.
-
-The `.github/workflows/release.yml` binary artifacts (attached to the GitHub
-Release on each tag) are independent of Homebrew — they're for people who want
-a prebuilt binary without compiling.
-
-Homebrew's core repo (`brew install capslock-indicator` with no tap prefix) has
-its own acceptance bar — notability, no HEAD-only, stable versioning — so a
-personal tap is the practical route unless the project gets popular.
-
 ## License
 
 MIT
