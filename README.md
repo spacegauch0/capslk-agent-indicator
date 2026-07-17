@@ -1,4 +1,4 @@
-# capslock-agent-indicator
+# capslock-indicator
 
 Turn your keyboard's **Caps Lock LED** into a status light for the Claude Code
 agent:
@@ -137,7 +137,7 @@ Prerequisites: this must be a Git repo pushed to GitHub.
 
 ```sh
 git init && git add -A && git commit -m "initial commit"
-git remote add origin git@github.com:spacegauch0/capslock-agent-indicator.git
+git remote add origin git@github.com:spacegauch0/capslock-indicator.git
 git push -u origin main
 ```
 
@@ -154,7 +154,7 @@ source (`depends_on "rust"`). Put it in a repo named `homebrew-tap`:
 1. Create `github.com/spacegauch0/homebrew-tap`.
 2. In `Formula/capslock-indicator.rb`, fill in `sha256`:
    ```sh
-   curl -sL https://github.com/spacegauch0/capslock-agent-indicator/archive/refs/tags/v0.1.0.tar.gz | shasum -a 256
+   curl -sL https://github.com/spacegauch0/capslock-indicator/archive/refs/tags/v0.1.0.tar.gz | shasum -a 256
    ```
 3. Commit it to the tap repo. Users then run
    `brew install spacegauch0/tap/capslock-indicator`.
