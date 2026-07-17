@@ -22,7 +22,7 @@ avoids the caps-lock caveat below entirely.
 ### Homebrew (macOS/Linux)
 
 ```sh
-brew install spacegauch0/tap/capslock-indicator
+brew install spacegauch0/tap/capslk-agent-indicator
 ```
 
 (Available once the tap is published — see **Releasing & Homebrew** below.)

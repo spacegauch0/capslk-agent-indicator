@@ -1,4 +1,4 @@
-# Homebrew formula for capslock-indicator.
+# Homebrew formula for capslk-agent-indicator.
 #
 # Builds from a pinned git revision rather than GitHub's auto-generated source
 # tarball: those tarballs are not byte-stable (their sha256 drifts across CDN
@@ -9,8 +9,8 @@
 #   git rev-parse vX.Y.Z^{commit}
 #
 # Publish this file in a tap repo named `homebrew-tap`; users then run:
-#   brew install spacegauch0/tap/capslock-indicator
-class CapslockIndicator < Formula
+#   brew install spacegauch0/tap/capslk-agent-indicator
+class CapslkAgentIndicator < Formula
   desc "Claude Code agent status indicator using keyboard LEDs"
   homepage "https://github.com/spacegauch0/capslk-agent-indicator"
   url "https://github.com/spacegauch0/capslk-agent-indicator.git",
